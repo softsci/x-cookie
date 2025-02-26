@@ -1,0 +1,39 @@
+@startuml X-Cookie Extension Workflow
+
+skinparam responseMessageBelowArrow true
+
+actor Developer
+participant Website as "Developer's Website"
+participant Extension as "X-Cookie Extension"
+participant Platform as "Target Platform\n(rednote/x etc.)"
+
+Developer -> Website: 1. Visit website
+activate Website
+
+Website -> Extension: 2. Call extension\n(with platform param)
+activate Extension
+
+Extension -> Platform: 3. Create tab\nvisit target platform
+activate Platform
+
+Platform --> Extension: 4. Page load complete
+
+Extension ->> Platform: 5. Check login status
+Platform -->> Extension: Return status
+
+opt Not logged in
+    Extension ->> Platform: 6. Wait for login\n(monitor login element)
+    Platform -->> Extension: Login confirmed
+end
+
+Extension ->> Platform: 7. Retrieve cookies
+Platform -->> Extension: 8. Return cookies
+deactivate Platform
+
+Extension --> Website: 9. Return cookies data\n(trigger callback)
+deactivate Extension
+
+Website --> Developer: 10. Execute custom callback\nwith cookies data
+deactivate Website
+
+@enduml
