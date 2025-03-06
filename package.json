@@ -2,7 +2,7 @@
   "name": "x-cookie",
   "description": "Login and return cookies of websites automatically",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "author": "SoftSci",
   "repository": {
@@ -37,6 +37,7 @@
     "@wxt-dev/auto-icons": "^1.0.2",
     "@wxt-dev/module-react": "^1.1.2",
     "typescript": "^5.6.3",
+    "vite-plugin-javascript-obfuscator": "^3.1.0",
     "wxt": "^0.19.13"
   }
 }
